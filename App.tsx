@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { BookLibrary } from './src/components/BookLibrary';
+import { SimpleBookLibrary } from './src/components/SimpleBookLibrary';
 import { EpubReader } from './src/components/EpubReader';
 import { EPubBook } from './src/types';
 
@@ -25,7 +25,7 @@ function App() {
       {selectedBook ? (
         <EpubReader book={selectedBook} onBack={handleBackToLibrary} />
       ) : (
-        <BookLibrary onBookSelect={handleBookSelect} />
+        <SimpleBookLibrary onBookSelect={handleBookSelect} />
       )}
     </SafeAreaView>
   );
