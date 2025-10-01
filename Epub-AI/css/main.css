@@ -1,0 +1,414 @@
+/* ===================================
+   CSS Reset & Base Styles
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ===================================
+   CSS Variables / Theme
+   =================================== */
+
+:root {
+    /* Colors */
+    --primary-color: #4CAF50;
+    --primary-dark: #388E3C;
+    --text-primary: #212121;
+    --text-secondary: #757575;
+    --background: #ffffff;
+    --surface: #f5f5f5;
+    --error: #f44336;
+    --border: #e0e0e0;
+    
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-size-base: 18px;
+    --font-size-large: 24px;
+    --font-size-small: 14px;
+    --line-height-base: 1.6;
+    --line-height-heading: 1.2;
+    
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    
+    /* Layout */
+    --max-content-width: 700px;
+    --header-height: 64px;
+    --nav-height: 72px;
+    
+    /* Touch Targets */
+    --touch-target-min: 44px;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ===================================
+   Base HTML & Body Styles
+   =================================== */
+
+html {
+    font-size: var(--font-size-base);
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--text-primary);
+    background-color: var(--background);
+    overflow-x: hidden;
+    
+    /* Prevent rubber-band scrolling on iOS */
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+    
+    /* Prevent text selection during gestures */
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* ===================================
+   Typography
+   =================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: var(--line-height-heading);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ===================================
+   Button Styles
+   =================================== */
+
+button {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 8px;
+    font-weight: 500;
+    min-height: var(--touch-target-min);
+    transition: background-color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+    background-color: var(--primary-dark);
+}
+
+/* ===================================
+   Upload Container
+   =================================== */
+
+.upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.upload-box {
+    background: white;
+    border-radius: 16px;
+    padding: var(--spacing-xl);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+}
+
+.upload-box h1 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* File Input Styling */
+#epub-file-input {
+    display: none;
+}
+
+.file-input-label {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    min-height: 180px;
+    justify-content: center;
+    width: 100%;
+}
+
+.file-input-label:hover,
+.file-input-label:active {
+    border-color: var(--primary-color);
+    background-color: rgba(76, 175, 80, 0.05);
+}
+
+.file-input-label svg {
+    color: var(--primary-color);
+}
+
+.file-input-label span {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.file-info {
+    margin-top: var(--spacing-md);
+    color: var(--text-secondary);
+    font-size: var(--font-size-small);
+    min-height: 20px;
+}
+
+/* ===================================
+   Loading Container
+   =================================== */
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--border);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-container p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-large);
+}
+
+/* ===================================
+   Error Container
+   =================================== */
+
+.error-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--spacing-md);
+    background-color: var(--surface);
+}
+
+.error-box {
+    background: white;
+    border-radius: 16px;
+    padding: var(--spacing-xl);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+.error-box svg {
+    color: var(--error);
+    margin-bottom: var(--spacing-md);
+}
+
+.error-box h2 {
+    color: var(--error);
+    margin-bottom: var(--spacing-sm);
+}
+
+#error-message {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ===================================
+   Reader Container
+   =================================== */
+
+.reader-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ===================================
+   Navigation Controls
+   =================================== */
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: white;
+    border-top: 1px solid var(--border);
+    height: var(--nav-height);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.nav-btn {
+    min-width: var(--touch-target-min);
+    min-height: var(--touch-target-min);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--surface);
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+}
+
+.nav-btn:hover,
+.nav-btn:active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.nav-btn:disabled:hover,
+.nav-btn:disabled:active {
+    background-color: var(--surface);
+    color: var(--text-primary);
+}
+
+.progress-info {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* ===================================
+   Back Button
+   =================================== */
+
+.back-btn {
+    position: fixed;
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    color: var(--text-primary);
+    font-size: var(--font-size-small);
+    transition: all var(--transition-fast);
+}
+
+.back-btn:hover,
+.back-btn:active {
+    background-color: var(--surface);
+}
+
+/* ===================================
+   Utility Classes
+   =================================== */
+
+.hidden {
+    display: none !important;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+/* ===================================
+   Performance Optimizations
+   =================================== */
+
+/* Enable hardware acceleration for animations */
+.nav-btn,
+.back-btn,
+.loading-spinner {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Optimize touch interactions */
+button,
+.file-input-label {
+    touch-action: manipulation;
+}

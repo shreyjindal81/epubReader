@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="51" fill="#4CAF50"/>
+  
+  <!-- Book -->
+  <rect x="51" y="-11" width="410" height="533" rx="15" fill="white"/>
+  
+  <!-- Spine -->
+  <rect x="51" y="-11" width="32" height="533" fill="#e6e6e6"/>
+  
+  <!-- Pages -->
+  <line x1="432" y1="148" 
+        x2="461" y2="148" 
+        stroke="#c8c8c8" stroke-width="2"/>
+  <line x1="432" y1="255" 
+        x2="461" y2="255" 
+        stroke="#c8c8c8" stroke-width="2"/>
+  <line x1="432" y1="362" 
+        x2="461" y2="362" 
+        stroke="#c8c8c8" stroke-width="2"/>
+</svg>

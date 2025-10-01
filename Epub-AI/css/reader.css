@@ -1,0 +1,343 @@
+/* ===================================
+   Reader-Specific Styles
+   =================================== */
+
+/* ===================================
+   Viewer Container
+   =================================== */
+
+.viewer {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    
+    /* Center content */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    
+    /* Padding for comfortable reading */
+    padding: var(--spacing-lg) var(--spacing-md);
+    padding-bottom: calc(var(--nav-height) + var(--spacing-lg));
+    
+    /* Smooth scrolling */
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* ===================================
+   EPUB Content Container
+   =================================== */
+
+#viewer > div {
+    max-width: var(--max-content-width);
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ===================================
+   Content Styling
+   =================================== */
+
+/* Ensure readable text within EPUB content */
+.viewer p {
+    line-height: var(--line-height-base);
+    margin-bottom: 1em;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
+.viewer h1,
+.viewer h2,
+.viewer h3,
+.viewer h4,
+.viewer h5,
+.viewer h6 {
+    line-height: var(--line-height-heading);
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    font-weight: 600;
+}
+
+.viewer h1 {
+    font-size: 1.75rem;
+}
+
+.viewer h2 {
+    font-size: 1.5rem;
+}
+
+.viewer h3 {
+    font-size: 1.25rem;
+}
+
+.viewer h4,
+.viewer h5,
+.viewer h6 {
+    font-size: 1.1rem;
+}
+
+/* ===================================
+   Images
+   =================================== */
+
+.viewer img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: var(--spacing-md) auto;
+    border-radius: 8px;
+}
+
+/* ===================================
+   Links
+   =================================== */
+
+.viewer a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+.viewer a:hover,
+.viewer a:active {
+    color: var(--primary-dark);
+}
+
+/* ===================================
+   Lists
+   =================================== */
+
+.viewer ul,
+.viewer ol {
+    margin-left: var(--spacing-md);
+    margin-bottom: 1em;
+}
+
+.viewer li {
+    margin-bottom: 0.5em;
+    line-height: var(--line-height-base);
+}
+
+/* ===================================
+   Blockquotes
+   =================================== */
+
+.viewer blockquote {
+    border-left: 4px solid var(--primary-color);
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--surface);
+    font-style: italic;
+    border-radius: 0 8px 8px 0;
+}
+
+/* ===================================
+   Code Blocks
+   =================================== */
+
+.viewer code {
+    background-color: var(--surface);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.viewer pre {
+    background-color: var(--surface);
+    padding: var(--spacing-sm);
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: var(--spacing-md);
+}
+
+.viewer pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* ===================================
+   Tables
+   =================================== */
+
+.viewer table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-md);
+    overflow-x: auto;
+    display: block;
+}
+
+.viewer th,
+.viewer td {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+.viewer th {
+    background-color: var(--surface);
+    font-weight: 600;
+}
+
+/* ===================================
+   Horizontal Rules
+   =================================== */
+
+.viewer hr {
+    border: none;
+    border-top: 2px solid var(--border);
+    margin: var(--spacing-lg) 0;
+}
+
+/* ===================================
+   Page Transition Animations
+   =================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Apply animation to content */
+.viewer.fade-in {
+    animation: fadeIn var(--transition-normal) ease-out;
+}
+
+.viewer.slide-right {
+    animation: slideInFromRight var(--transition-normal) ease-out;
+}
+
+.viewer.slide-left {
+    animation: slideInFromLeft var(--transition-normal) ease-out;
+}
+
+/* ===================================
+   Text Selection
+   =================================== */
+
+/* Allow text selection in reading content */
+.viewer * {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+/* But prevent selection during gestures */
+.viewer.no-select * {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* ===================================
+   Touch Zones for Navigation
+   =================================== */
+
+.viewer::before,
+.viewer::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: var(--nav-height);
+    width: 30%;
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* Left touch zone - Previous page */
+.viewer::before {
+    left: 0;
+}
+
+/* Right touch zone - Next page */
+.viewer::after {
+    right: 0;
+}
+
+/* Visual feedback on touch (optional) */
+.viewer::before:active,
+.viewer::after:active {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* ===================================
+   Reading Experience Optimizations
+   =================================== */
+
+/* Optimize font rendering */
+.viewer {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent text orphans */
+.viewer p {
+    orphans: 2;
+    widows: 2;
+}
+
+/* Smooth page scrolling */
+.viewer {
+    scroll-behavior: smooth;
+}
+
+/* Hardware acceleration for smooth transitions */
+.viewer {
+    transform: translateZ(0);
+    will-change: opacity, transform;
+}
+
+/* ===================================
+   Loading State for Content
+   =================================== */
+
+.viewer.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.viewer.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid var(--border);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
